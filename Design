@@ -1,0 +1,47 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 04.09.2026 12:22:50
+// Design Name: 
+// Module Name: pulse_gen
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module pulse_gen #(parameter [1:0] pulse_duration=3,
+                    parameter [3:0] pulse_period=8)
+        ( input clk,input rst,output reg pulse);
+        reg [3:0] count=pulse_period-1;
+        always@(posedge clk) begin
+            if(rst) begin
+                pulse<=0;
+                count<=0;
+            end
+            else if(count==pulse_duration-1) begin
+                pulse <=0;
+                count<=count+1;
+            end
+            else if(count==pulse_period-1) begin
+                pulse<=1;
+                count<=0;
+            end
+            else
+                count<=count+1;            
+            
+        
+        end
+
+   
+endmodule
