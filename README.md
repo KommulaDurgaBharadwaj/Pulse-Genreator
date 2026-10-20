@@ -1,1 +1,1 @@
-# Pulse-Genreator
+# Pulse-Generator
