@@ -1,0 +1,55 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 04.09.2026 12:39:54
+// Design Name: 
+// Module Name: tb
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+module tb;
+
+    reg clk;
+    reg rst;
+    wire pulse;
+
+    parameter [1:0] pulse_duration= 2'd3;
+    parameter [3:0] pulse_period  = 4'd8;
+
+    pulse_gen #(
+        .pulse_duration(pulse_duration),
+        .pulse_period(pulse_period)
+    ) dut (
+        .clk(clk),
+        .rst(rst),
+        .pulse(pulse)
+    );
+
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        rst = 1;
+        #10;
+        rst = 0;
+
+        #200;
+
+        $finish;
+    end
+
+endmodule
